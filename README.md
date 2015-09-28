@@ -12,10 +12,10 @@ Included:
 The output is located in folder ```output```.
 
 
-**Features in the Output**
+**Features**
 
  -   Hovering over a token opens a menu with detailed type information.
  -   Pressing ```i``` on the keyword while inside a source file represenation toogles the highlighting of implicit conversions and/ or parameters.
- -   Package summary in ```packageSummary.html```
- -   Type summary in ```typeInformationSummary.html```
- -   Where used in ```whereUsedSummary.html```
+ -   Package summary in ```packageSummary.html```.
+ -   Type summary in ```typeInformationSummary.html```.
+ -   Where used in ```whereUsedSummary.html```.
