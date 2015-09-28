@@ -1,0 +1,280 @@
+
+<!doctype HTML>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.0/themes/black-tie/jquery-ui.css" media="screen" />
+<title>!README.scala</title>
+<script src="../js/codeprose.global.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.0/jquery-ui.js"></script>
+<script src="../js/codeprose.typeinformation.js"></script>
+<script src="../js/codeprose.whereusedinformation.js"></script>   
+<script src="../js/codeprose.packageinformation.js"></script>
+<script src="../js/codeprose.helper.js"></script>
+<script src="../js/codeprose.implicitinformation.js"></script>          
+            
+                
+<script type="text/javascript">
+
+$(document).ready(function(){ 
+
+        /*
+         * Highlights other uses of the token under the mouse within the file.
+         */
+        $("[id^='T']").hover( 
+          function(){ toHighlight = $(this).data("cp-whereusedinfile"); $(toHighlight).toggleClass("highlightWhereUsedWithinFile"); },
+          function(){ toHighlight = $(this).data("cp-whereusedinfile"); $(toHighlight).toggleClass("highlightWhereUsedWithinFile"); }
+        );
+
+
+        /*
+         * Highlights/unhighlights implicit conversions and implicit 
+         * parameters within the file.
+         */
+      function highlightImplicitConversionsAndParameters(){
+
+        // Implicit conversions
+        $('*[data-cp-implicitconversion=true]').toggleClass("highlightImplicitConversion");
+
+        // Implicit parameters
+        // Color to use highlightImplicitParameter
+        $('*[data-cp-implicitparameter=true]').toggleClass("highlightImplicitParameter");
+      }
+
+
+      /*
+       * Central function handling key events.
+       * Mappings:
+       *  -  'i' -> highlightImplicitConversionsAndParameters()
+       */
+      // Key events     
+      $(document).keypress(function(e){
+        // i
+        if(e.keyCode == 105){ highlightImplicitConversionsAndParameters() }     
+      });
+
+      /*
+       * Assigns the tooltip information to tokens.
+       */
+       // Tooltip
+       $('*[data-cp-tooltipdisplay=true]').tooltip({
+          content: function () {           
+          return createTooltipHtmlFromDataAttr(this);
+        },
+          show: null,
+          disabled: false,
+          // position: {of: $("#LCOM0"), at: "left"},
+          position: { my: 'left-center', at: "right+7 right"},
+          close: function (event, ui) {
+            ui.tooltip.hover(
+            function () { $(this).stop(true).fadeTo(400, 1); },
+            function () { $(this).fadeOut("100", function () { $(this).remove(); }) });
+        }
+      });
+      
+      
+
+
+      
+
+
+
+});
+</script>
+</head>
+<body>
+<div align="center">
+<div class="header" id="header" align="center"> 
+<div style="float:left;"> 
+<span style="font-size:1.5em;font-weight:bold;" title="/home/gus/coding/scala/bscthesis/codeprose/codeproseTestProject/codeproseTestProject/src/main/scala/org/codeprose/test/!README.scala">!README.scala&nbsp;</span><span style="font-size:1em;">org.codeprose.test.text</span></div>
+<div style="float:right;"><a style="color:black;font-weight:bold;" href="../index.html">overview</a></div>
+</div>
+<div class="content">
+<noscript><div style="margin:2em;"><b>Activate JavaScript for more features</b>.</div></noscript>
+<table class="table-code">
+<tr id="LCONT0" class="table-code-line">
+	<td id="LCOM0" class="table-code-comment"></td>
+	<td id="L0" class="table-code-linenumber" data-line-number="0">0</td>
+	<td id="LC0" class="table-code-code"><pre><span class="keyword"  title="PACKAGE" >package</span> <span class="PackageSymbol"  id="T3"  data-cp-fullname="<none>.org$" data-cp-typeid="2" data-cp-internaltokenid="3" data-cp-ownertypeid="510" data-cp-iscallable="false" data-cp-whereusedinfile="#T3" data-cp-tooltipdisplay="true"   title="<none>.org$
+TokenType: VARID
+Offset: 8" >org</span>.<span class="PackageSymbol"  id="T5"  data-cp-fullname="org.codeprose$" data-cp-typeid="1" data-cp-internaltokenid="5" data-cp-ownertypeid="2" data-cp-iscallable="false" data-cp-whereusedinfile="#T5" data-cp-tooltipdisplay="true"   title="org.codeprose$
+TokenType: VARID
+Offset: 12" >codeprose</span>.<span class="PackageSymbol"  id="T7"  data-cp-fullname="org.codeprose.test$" data-cp-typeid="3" data-cp-internaltokenid="7" data-cp-ownertypeid="1" data-cp-iscallable="false" data-cp-whereusedinfile="#T7" data-cp-tooltipdisplay="true"   title="org.codeprose.test$
+TokenType: VARID
+Offset: 22" >test</span>.<a href="../content/_!README.scala.html#T9" class="in-code"><span class="PackageSymbol"  id="T9"  data-cp-fullname="org.codeprose.test.text$" data-cp-typeid="4" data-cp-internaltokenid="9" data-cp-ownertypeid="3" data-cp-iscallable="false" data-cp-whereusedinfile="#T9,#T9" data-cp-declaration="../content/_!README.scala.html#T9" data-cp-tooltipdisplay="true"   title="org.codeprose.test.text$
+TokenType: VARID
+Offset: 27" >text</span></a></pre></td>
+</tr>
+
+</table>
+
+<table class="table-code">
+</table>
+
+<table class="table-text"><tr class="table-text-line">
+<td class="table-text-comment"></td>
+<td class="table-text-text"><h1 id = "Codeprose_Test_Project">Codeprose Test Project</h1>
+
+<h2 id = "Content">Content</h2>
+
+<ol>
+<li>What is Codeprose?</li>
+<li>How to Use Codeprose?</li>
+<li>Supported Markdown Features</li>
+</ol>
+
+<h2 id = "What_is_Codeprose_">What is Codeprose?</h2>
+
+<p>Codeprose is a literate programming tool for Scala. It generates HTML output including
+syntax highlighting and source code annotated with compile time information.</p>
+
+<p>Tokens are enriched with detailed type information, links to declaration and
+type definition as well as information about implicit conversions and parameters.</p>
+
+<p>Further, both type and package summaries as well as 'where used' information is provided.</p>
+
+<p>In the spirit of literate programming Codeprose allows syntax formatting via Markdown
+in comments. Compile time information is obtained by interfacing with the editor
+service ENSIME which guarantees independence from the Scala compiler and improves
+re-usability and maintenance.</p>
+
+<p>Codeprose's design makes it easily extendible to other or mixtures of languages and
+offers the possibility of introducing other output formats such as, for example, LaTeX.</p></td>
+</tr>
+</table>
+
+<table class="table-code">
+</table>
+
+<table class="table-text"><tr class="table-text-line">
+<td class="table-text-comment"></td>
+<td class="table-text-text"><h2 id = "How_to_Use_Codeprose_">How to Use Codeprose?</h2>
+
+<h3 id = "How_to_write_code_">How to write code?</h3>
+
+<p>To get the most out of Codeprose you should use Markdown in mutli-line comments to make them visually appealing.
+Thats it! Instructions for Markdown can be found in the next section. All the rest, like summary pages and
+compile time information comes for free.</p>
+
+<h3 id = "How_to_get_output_">How to get output?</h3>
+
+<p>Install and usage instruction for Codeprose can be found in the Readme.md on <a href="https://github.com/gushai/codeprose">github.com/gushai/codeprose</a>.</p>
+
+<h3 id = "Output_Features">Output Features</h3>
+
+<ul>
+<li>Project overview in <code>index.html</code>.</li>
+<li>Package summary in <code>packageSummary.html</code>.</li>
+<li>Type summary in <code>typeInformationSummary.html</code>.</li>
+<li>Where used in <code>whereUsedSummary.html</code>.</li>
+<li>Hovering over a token opens a menu with detailed type information.</li>
+<li>Pressing <code>i</code> on the keyword while inside a source file represenation toogles the highlighting of implicit conversions and/ or parameters.</li>
+</ul></td>
+</tr>
+</table>
+
+<table class="table-code">
+</table>
+
+<table class="table-text"><tr class="table-text-line">
+<td class="table-text-comment"></td>
+<td class="table-text-text"><h2 id = "Markdown_Feature_Overview">Markdown Feature Overview</h2>
+
+<p>This is taken from <a href="http://daringfireball.net/projects/markdown/basics">John Gruber's markdown basics on daringfireball</a>.</p>
+
+<h1 id = "A_First_Level_Header">A First Level Header</h1>
+
+<h2 id = "A_Second_Level_Header">A Second Level Header</h2>
+
+<p>Now is the time for all good men to come to
+the aid of their country. This is just a
+regular paragraph.</p>
+
+<p>The quick brown fox jumped over the lazy
+dog's back.</p>
+
+<h3 id = "Header_3">Header 3</h3>
+
+<blockquote>
+<p>This is a blockquote.</p>
+
+<p>This is the second paragraph in the blockquote.</p>
+
+<h2 id = "This_is_an_H2_in_a_blockquote">This is an H2 in a blockquote</h2>
+</blockquote>
+
+<h3 id = "Phrase_Emphasis">Phrase Emphasis</h3>
+
+<p>Some of these words <em>are emphasized</em>.
+Some of these words <em>are emphasized also</em>.</p>
+
+<p>Use two asterisks for <strong>strong emphasis</strong>.
+Or, if you prefer, <strong>use two underscores instead</strong>.</p>
+
+<h2 id = "Lists">Lists</h2>
+
+<h3 id = "Unordered_Lists">Unordered Lists</h3>
+
+<ul>
+<li>Candy.</li>
+<li>Gum.</li>
+<li><p>Booze.</p></li>
+<li><p>Candy.</p></li>
+<li>Gum.</li>
+<li><p>Booze</p></li>
+<li><p>Candy.</p></li>
+<li>Gum.</li>
+<li>Booze.</li>
+</ul>
+
+<h3 id = "Ordered_Lists">Ordered Lists</h3>
+
+<ol>
+<li>Red</li>
+<li>Green</li>
+<li>Blue</li>
+</ol>
+
+<h3 id = "List_with_paragraphs">List with paragraphs</h3>
+
+<ul>
+<li>A list item.</li>
+</ul>
+
+<p>With multiple paragraphs.</p>
+
+<ul>
+<li>Another item in the list.</li>
+</ul>
+
+<h2 id = "Links">Links</h2>
+
+<p>This is an <a href="http://example.com/">example link</a>.</p>
+
+<h3 id = "Reference_style">Reference style</h3>
+
+<p>I get 10 times more traffic from <a href="http://google.com/" title="Google">Google</a> than from
+<a href="http://search.yahoo.com/" title="Yahoo Search">Yahoo</a> or <a href="http://search.msn.com/" title="MSN Search">MSN</a>.</p>
+
+<h2 id = "Code">Code</h2>
+
+<p>I strongly recommend against using any <code>&lt;blink&gt;</code> tags.</p>
+
+<p>I wish SmartyPants used named entities like <code>&mdash;</code>
+instead of decimal-encoded entites like <code>&#8212;</code>.</p></td>
+</tr>
+</table>
+
+<table class="table-code">
+</table>
+
+
+
+          
+<div class="footer">generated by codeprose. help and support on <a href="http://github.com/gushai/codeprose" target="blank">github</a>.</div>
+</div>
+</div>
+</body>
+</html>

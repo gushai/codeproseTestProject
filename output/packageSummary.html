@@ -1,0 +1,204 @@
+
+<!doctype HTML>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="./style/style.css" media="screen" />
+<title>Package Information</title>
+<script src="./js/codeprose.global.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.0/jquery-ui.js"></script>
+<script src="./js/codeprose.typeinformation.js"></script>
+<script src="./js/codeprose.whereusedinformation.js"></script> 
+<script src="./js/codeprose.packageinformation.js"></script>
+<script src="./js/codeprose.helper.js"></script>
+<script src="./js/codeprose.implicitinformation.js"></script>  
+
+<script type="text/javascript">
+
+
+
+$(document).ready(function(){ 
+  
+
+  function getPackageInformationSummary(){
+    var domElemToAppend = "#ContentPackgeInformationSummary";
+  
+  if(packageNames.length>0){
+    var toAppend = "<div style='padding-left:1.3em;'>" + "<ul>";
+
+    for(var i=0;i<packageNames.length;i++){
+      var packName = packageNames[i];
+      toAppend += "<li style='margin-top:0.4em;'><a href='#PACK" + packName + "'>" + packName + "</a></li>";
+      
+    }
+    toAppend += "</ul>" + "</div>";
+    $(domElemToAppend).append(toAppend);
+  } else {
+    $(domElemToAppend).append("No package information found.");
+  }
+
+  };
+
+
+  function getPackageInformationDetails(){
+    var domElemToAppend = "#ContentPackageInformationDetails";
+
+  for(var i=0;i<packageNames.length;i++){
+
+    var packName = packageNames[i] 
+    var packInfo = packageInformation[packName];
+    var toAppend = "<div style='padding-left:1.3em;'>";
+
+    toAppend +="<div style='margin-top:2em; margin-bottom:0.8em;' id='PACK" + packInfo.fullName +"'><span style='font-weight:bold; font-size:1.2em;'>" + packInfo.fullName + "</span></div>";
+    var memberInformation = getPackageInfoMemberDetails(packInfo.members);
+
+toAppend += memberInformation
+toAppend += "</div>";
+
+    $(domElemToAppend).append(toAppend);
+
+  }
+
+  };
+
+function getPackageInfoMemberDetails(members){
+  var retString = "";
+
+  if(members.length>0){
+
+// Group information
+
+var groupedMemberInfo = {};
+   
+for(var mem=0;mem<members.length;mem++){
+      var member = members[mem];
+      
+      var typeId = "";
+      var declaredAs = "-";
+      var nam = "";
+      var linkToSrcPos = null;
+      
+      if(member.typeName==="BasicTypeInfo"){
+        typeId = member.typeId;
+        declaredAs = member.declAs;
+  nam = member.fullName;
+  if(member.pos!=null && member.pos.tokenId!=-1){
+     linkToSrcPos = "." + srcFileToRelLink[member.pos.filename] + "#T"+ member.pos.tokenId; 
+  }
+      } else if(member.typeName==="ArrowTypeInfo"){
+  typeId = member.typeId.toString;
+        declaredAs = "arrow";
+  nam = member.name;
+      } else if(member.typeName==="PackageInfo"){
+        declaredAs = "package";
+  nam = member.fullName;
+      } else {}
+
+      var memInfo = {}
+  memInfo.id = typeId;
+  memInfo.declaredAs = declaredAs;      
+  memInfo.name = nam;
+  memInfo.linkToSrcPos = linkToSrcPos;
+
+     if(groupedMemberInfo[declaredAs]!=null){ 
+  var tmp = groupedMemberInfo[declaredAs];
+  tmp.push(memInfo);     
+  groupedMemberInfo[declaredAs] = tmp;
+     } else {
+  groupedMemberInfo[declaredAs] = [memInfo];
+
+     }
+    }
+  
+// Generate output
+retString +=  "<table>";
+
+for(key in groupedMemberInfo){
+  var members = groupedMemberInfo[key];
+  
+var headline = "<tr>" + "<td style='text-align:center;padding-left:1.3em;padding-top:0.8em;'><b>" + key.toString() + "</b></td>" + "<td style='padding-left:3em;'>"+ "</td>"+"</tr>";
+
+//var headline = "<div style='padding-left:2em;margin-top:1.5em;'>" + "<b>" + key.toString() + "</b>"
+  retString += headline;
+  //retString += "<ul style='padding-left:7em;margin-top:1em;'>";
+  for( var i=0;i<members.length;i++){
+    var mem = members[i];
+    entry = "";
+    tableEntry = "";
+    if(mem.declaredAs === "arrow"){
+tableEntry += "<tr>" + "<td style='text-align:right;padding-right:2em;padding-top:0.6em;margin-top:0.4em;'>" + "</td>" + "<td style='padding-left:3em;padding-top:0.6em;'>" + mem.name + "</a>"+ "</td>"+"</tr>";
+    } else if (mem.declaredAs === "package"){
+        var relLink = "#PACK" + mem.name;
+
+tableEntry += "<tr>" + "<td style='text-align:right;padding-right:2em;padding-top:0.6em;margin-top:0.4em;'>" + "</td>" + "<td style='padding-left:3em;padding-top:0.6em;'>" + "<a href='" + relLink + "' title='" + mem.name + " - " + mem.declaredAs + "'>" + mem.name + "</a>"+ "</td>"+"</tr>";
+    } else {
+      if(mem.linkToSrcPos!=null){
+      //entry += "<li style='margin-top:0.5em;'>" + "<a href='" + mem.linkToSrcPos + "' title='" + mem.name + " - " + mem.declaredAs + "'>" + mem.name + "</a>" + "</li>";
+tableEntry += "<tr>" + "<td style='text-align:right;padding-right:2em;padding-top:0.6em;margin-top:0.4em;'>" + "</td>" + "<td style='padding-left:3em;padding-top:0.6em;'>" + "<a href='" + mem.linkToSrcPos + "' title='" + mem.name + " - " + mem.declaredAs + "'>" + mem.name + "</a>"+ "</td>"+"</tr>";
+      } else {
+tableEntry += "<tr>" + "<td style='text-align:right;padding-right:2em;padding-top:0.6em;margin-top:0.4em;'>" + "</td>" + "<td style='padding-left:3em;padding-top:0.6em;'>" + mem.name + "</a>"+ "</td>"+"</tr>";
+}
+    }
+
+    
+    retString += tableEntry;
+
+  }
+//retString +="</div></ul>";
+}
+  retString +="</table>";
+  
+  } else {
+  retString += "<div style='margin-top:2em;padding-left:2em;'>No members.</div>";
+  }
+
+
+
+
+  return retString;
+};
+
+
+
+  getPackageInformationSummary();
+  getPackageInformationDetails();
+  
+});         
+        
+        
+       
+
+</script>
+</head>
+<body>
+<div align="center">
+<div class="header" id="header" align="center"> 
+<div style="float:left;"> 
+<span style="font-size:1.5em;font-weight:bold;">Package Information&nbsp;</span></div>
+<div style="float:right;"><a style="color:black;font-weight:bold;" href="./index.html">overview</a></div>
+</div>
+<div class="content">
+<noscript><div style="margin:2em;"><b>Activate JavaScript for more features</b>.</div></noscript>
+
+<div class="textframe">
+<h2>Summary</h2>
+<div class="textbox">
+<noscript><div style="margin-left:2em;">Activate JavaScript for this feature.</div></noscript><div id="ContentPackgeInformationSummary"></div>
+</div>
+</div>
+
+<div class="textframe">
+<h2>Details</h2>
+<div class="textbox">
+<noscript><div style="margin-left:2em;">Activate JavaScript for this feature.</div></noscript><div id="ContentPackageInformationDetails"></div>
+</div>
+</div>
+
+
+
+<div class="footer">generated by codeprose. help and support on <a href="http://github.com/gushai/codeprose" target="blank">github</a>.</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,356 @@
+
+<!doctype HTML>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.0/themes/black-tie/jquery-ui.css" media="screen" />
+<title>RationalExample.scala</title>
+<script src="../js/codeprose.global.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.0/jquery-ui.js"></script>
+<script src="../js/codeprose.typeinformation.js"></script>
+<script src="../js/codeprose.whereusedinformation.js"></script>   
+<script src="../js/codeprose.packageinformation.js"></script>
+<script src="../js/codeprose.helper.js"></script>
+<script src="../js/codeprose.implicitinformation.js"></script>          
+            
+                
+<script type="text/javascript">
+
+$(document).ready(function(){ 
+
+        /*
+         * Highlights other uses of the token under the mouse within the file.
+         */
+        $("[id^='T']").hover( 
+          function(){ toHighlight = $(this).data("cp-whereusedinfile"); $(toHighlight).toggleClass("highlightWhereUsedWithinFile"); },
+          function(){ toHighlight = $(this).data("cp-whereusedinfile"); $(toHighlight).toggleClass("highlightWhereUsedWithinFile"); }
+        );
+
+
+        /*
+         * Highlights/unhighlights implicit conversions and implicit 
+         * parameters within the file.
+         */
+      function highlightImplicitConversionsAndParameters(){
+
+        // Implicit conversions
+        $('*[data-cp-implicitconversion=true]').toggleClass("highlightImplicitConversion");
+
+        // Implicit parameters
+        // Color to use highlightImplicitParameter
+        $('*[data-cp-implicitparameter=true]').toggleClass("highlightImplicitParameter");
+      }
+
+
+      /*
+       * Central function handling key events.
+       * Mappings:
+       *  -  'i' -> highlightImplicitConversionsAndParameters()
+       */
+      // Key events     
+      $(document).keypress(function(e){
+        // i
+        if(e.keyCode == 105){ highlightImplicitConversionsAndParameters() }     
+      });
+
+      /*
+       * Assigns the tooltip information to tokens.
+       */
+       // Tooltip
+       $('*[data-cp-tooltipdisplay=true]').tooltip({
+          content: function () {           
+          return createTooltipHtmlFromDataAttr(this);
+        },
+          show: null,
+          disabled: false,
+          // position: {of: $("#LCOM0"), at: "left"},
+          position: { my: 'left-center', at: "right+7 right"},
+          close: function (event, ui) {
+            ui.tooltip.hover(
+            function () { $(this).stop(true).fadeTo(400, 1); },
+            function () { $(this).fadeOut("100", function () { $(this).remove(); }) });
+        }
+      });
+      
+      
+
+
+      
+
+
+
+});
+</script>
+</head>
+<body>
+<div align="center">
+<div class="header" id="header" align="center"> 
+<div style="float:left;"> 
+<span style="font-size:1.5em;font-weight:bold;" title="/home/gus/coding/scala/bscthesis/codeprose/codeproseTestProject/codeproseTestProject/src/main/scala/org/codeprose/test/RationalExample.scala">RationalExample.scala&nbsp;</span><span style="font-size:1em;">org.codeprose.test</span></div>
+<div style="float:right;"><a style="color:black;font-weight:bold;" href="../index.html">overview</a></div>
+</div>
+<div class="content">
+<noscript><div style="margin:2em;"><b>Activate JavaScript for more features</b>.</div></noscript>
+<table class="table-code">
+<tr id="LCONT0" class="table-code-line">
+	<td id="LCOM0" class="table-code-comment"></td>
+	<td id="L0" class="table-code-linenumber" data-line-number="0">0</td>
+	<td id="LC0" class="table-code-code"><pre><span class="keyword"  title="PACKAGE" >package</span> <span class="PackageSymbol"  id="T1740"  data-cp-fullname="<none>.org$" data-cp-typeid="2" data-cp-internaltokenid="1740" data-cp-ownertypeid="510" data-cp-iscallable="false" data-cp-whereusedinfile="#T1740" data-cp-tooltipdisplay="true"   title="<none>.org$
+TokenType: VARID
+Offset: 8" >org</span>.<span class="PackageSymbol"  id="T1742"  data-cp-fullname="org.codeprose$" data-cp-typeid="1" data-cp-internaltokenid="1742" data-cp-ownertypeid="2" data-cp-iscallable="false" data-cp-whereusedinfile="#T1742" data-cp-tooltipdisplay="true"   title="org.codeprose$
+TokenType: VARID
+Offset: 12" >codeprose</span>.<span class="PackageSymbol"  id="T1744"  data-cp-fullname="org.codeprose.test$" data-cp-typeid="3" data-cp-internaltokenid="1744" data-cp-ownertypeid="1" data-cp-iscallable="false" data-cp-whereusedinfile="#T1744" data-cp-tooltipdisplay="true"   title="org.codeprose.test$
+TokenType: VARID
+Offset: 22" >test</span></pre></td>
+</tr>
+
+</table>
+
+<table class="table-code">
+</table>
+
+<table class="table-text"><tr class="table-text-line">
+<td class="table-text-comment"></td>
+<td class="table-text-text"><h2 id = "Example_with_Rational_Numbers">Example with Rational Numbers</h2>
+
+<p>A sample application highlighting some features of <strong>org.codeprose.test.Rational</strong>.</p>
+
+<p>Codeprose is available on <a href="https://github.com/gushai/codeprose">github.com/gushai/codeprose</a>.</p></td>
+</tr>
+</table>
+
+<table class="table-code">
+<tr id="LCONT9" class="table-code-line">
+	<td id="LCOM9" class="table-code-comment"></td>
+	<td id="L9" class="table-code-linenumber" data-line-number="9">9</td>
+	<td id="LC9" class="table-code-code"><pre><span class="keyword"  title="OBJECT" >object</span> <a href="../content/_RationalExample.scala.html#T1750" class="in-code"><span  id="T1750"  data-cp-fullname="org.codeprose.test.RationalExample$" data-cp-typeid="106" data-cp-internaltokenid="1750" data-cp-ownertypeid="3" data-cp-iscallable="false" data-cp-whereusedinfile="#T1750" data-cp-declaration="../content/_RationalExample.scala.html#T1750" data-cp-tooltipdisplay="true"   title="org.codeprose.test.RationalExample$
+TokenType: VARID
+Offset: 312" >RationalExample</span></a> {</pre></td>
+</tr>
+
+
+<tr id="LCONT10" class="table-code-line">
+	<td id="LCOM10" class="table-code-comment"></td>
+	<td id="L10" class="table-code-linenumber" data-line-number="10">10</td>
+	<td id="LC10" class="table-code-code"><pre>  <span class="keyword"  title="DEF" >def</span> <a href="../content/_RationalExample.scala.html#T1756" class="in-code"><span  id="T1756"  data-cp-fullname="(args: Array[String])Unit" data-cp-typeid="107" data-cp-internaltokenid="1756" data-cp-ownertypeid="106" data-cp-iscallable="true" data-cp-whereusedinfile="#T1756" data-cp-declaration="../content/_RationalExample.scala.html#T1756" data-cp-tooltipdisplay="true"   title="(args: Array[String])Unit
+TokenType: VARID
+Offset: 339" >main</span></a>(<a href="../content/_RationalExample.scala.html#T1758" class="in-code"><span class="ParamSymbol"  id="T1758"  data-cp-fullname="scala.Array" data-cp-typeid="43" data-cp-internaltokenid="1758" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1758" data-cp-declaration="../content/_RationalExample.scala.html#T1758" data-cp-tooltipdisplay="true"   title="scala.Array
+TokenType: VARID
+Offset: 344" >args</span></a>: <span class="ClassSymbol"  id="T1761"  data-cp-fullname="scala.Array" data-cp-typeid="45" data-cp-internaltokenid="1761" data-cp-ownertypeid="12" data-cp-iscallable="false" data-cp-whereusedinfile="#T1761" data-cp-tooltipdisplay="true"   title="scala.Array
+TokenType: VARID
+Offset: 350" >Array</span>[<span  id="T1763"  data-cp-fullname="java.lang.String" data-cp-typeid="19" data-cp-internaltokenid="1763" data-cp-ownertypeid="14" data-cp-iscallable="false" data-cp-whereusedinfile="#T1763" data-cp-tooltipdisplay="true"   title="java.lang.String
+TokenType: VARID
+Offset: 356" >String</span>]): <span class="ClassSymbol"  id="T1768"  data-cp-fullname="scala.Unit" data-cp-typeid="9" data-cp-internaltokenid="1768" data-cp-ownertypeid="12" data-cp-iscallable="false" data-cp-whereusedinfile="#T1768" data-cp-tooltipdisplay="true"   title="scala.Unit
+TokenType: VARID
+Offset: 366" >Unit</span> = {</pre></td>
+</tr>
+
+
+<tr id="LCONT11" class="table-code-line">
+	<td id="LCOM11" class="table-code-comment"></td>
+	<td id="L11" class="table-code-linenumber" data-line-number="11">11</td>
+	<td id="LC11" class="table-code-code"><pre>    <span class="FunctionCallSymbol"  id="T1774"  data-cp-fullname="(x: Any)Unit" data-cp-typeid="68" data-cp-internaltokenid="1774" data-cp-ownertypeid="14" data-cp-iscallable="true" data-cp-whereusedinfile="#T1774,#T1860,#T1881,#T1908" data-cp-tooltipdisplay="true"   title="(x: Any)Unit
+TokenType: VARID
+Offset: 382" >println</span>(<span class="stringLiteral"  data-cp-fullname="STRING_LITERAL" data-cp-tooltipdisplay="true"   title="STRING_LITERAL
+Offset: 390" >&quot;[org.codeprose.rational.Example]: Sample Application.&quot;</span> )</pre></td>
+</tr>
+
+
+<tr id="LCONT12" class="table-code-line">
+	<td id="LCOM12" class="table-code-comment"></td>
+	<td id="L12" class="table-code-linenumber" data-line-number="12">12</td>
+	<td id="LC12" class="table-code-code"><pre>    <span class="keyword"  title="VAL" >val</span> <a href="../content/_RationalExample.scala.html#T1782" class="in-code"><span class="ValSymbol"  id="T1782"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1782" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1782,#T1827,#T1839,#T1862" data-cp-declaration="../content/_RationalExample.scala.html#T1782" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 456" >A</span></a> = <span class="keyword"  title="NEW" >new</span> <a href="../content/_Rational.scala.html#T1101" class="in-code"><span class="ClassSymbol"  id="T1788"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1788" data-cp-ownertypeid="3" data-cp-iscallable="false" data-cp-whereusedinfile="#T1814,#T1788,#T1803" data-cp-declaration="../content/_Rational.scala.html#T1101" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 464" >Rational</span></a>(<span class="numberLiteral"  data-cp-fullname="INTEGER_LITERAL" data-cp-tooltipdisplay="true"   title="INTEGER_LITERAL
+Offset: 473" >1</span>,<span class="numberLiteral"  data-cp-fullname="INTEGER_LITERAL" data-cp-tooltipdisplay="true"   title="INTEGER_LITERAL
+Offset: 475" >7</span>)</pre></td>
+</tr>
+
+
+<tr id="LCONT13" class="table-code-line">
+	<td id="LCOM13" class="table-code-comment"></td>
+	<td id="L13" class="table-code-linenumber" data-line-number="13">13</td>
+	<td id="LC13" class="table-code-code"><pre>    <span class="keyword"  title="VAL" >val</span> <a href="../content/_RationalExample.scala.html#T1797" class="in-code"><span class="ValSymbol"  id="T1797"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1797" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1797,#T1831,#T1843,#T1870" data-cp-declaration="../content/_RationalExample.scala.html#T1797" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 487" >B</span></a> = <span class="keyword"  title="NEW" >new</span> <a href="../content/_Rational.scala.html#T1101" class="in-code"><span class="ClassSymbol"  id="T1803"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1803" data-cp-ownertypeid="3" data-cp-iscallable="false" data-cp-whereusedinfile="#T1814,#T1788,#T1803" data-cp-declaration="../content/_Rational.scala.html#T1101" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 495" >Rational</span></a>(<span class="numberLiteral"  data-cp-fullname="INTEGER_LITERAL" data-cp-tooltipdisplay="true"   title="INTEGER_LITERAL
+Offset: 504" >1</span>)</pre></td>
+</tr>
+
+
+<tr id="LCONT14" class="table-code-line">
+	<td id="LCOM14" class="table-code-comment"></td>
+	<td id="L14" class="table-code-linenumber" data-line-number="14">14</td>
+	<td id="LC14" class="table-code-code"><pre>    <span class="keyword"  title="VAL" >val</span> <a href="../content/_RationalExample.scala.html#T1810" class="in-code"><span class="ValSymbol"  id="T1810"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1810" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1810,#T1878,#T1883,#T1900" data-cp-declaration="../content/_RationalExample.scala.html#T1810" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 515" >C</span></a> = <a href="../content/_Rational.scala.html#T1691" class="in-code"><span  id="T1814"  data-cp-fullname="(n: Int, d: Int)org.codeprose.test.Rational" data-cp-typeid="104" data-cp-internaltokenid="1814" data-cp-ownertypeid="78" data-cp-iscallable="true" data-cp-whereusedinfile="#T1814" data-cp-declaration="../content/_Rational.scala.html#T1691" data-cp-tooltipdisplay="true"   title="(n: Int, d: Int)org.codeprose.test.Rational
+TokenType: VARID
+Offset: 519" >Rational</span></a>(<span class="numberLiteral"  data-cp-fullname="INTEGER_LITERAL" data-cp-tooltipdisplay="true"   title="INTEGER_LITERAL
+Offset: 528" >77</span>,<span class="numberLiteral"  data-cp-fullname="INTEGER_LITERAL" data-cp-tooltipdisplay="true"   title="INTEGER_LITERAL
+Offset: 531" >344</span>)</pre></td>
+</tr>
+
+
+<tr id="LCONT15" class="table-code-line">
+	<td id="LCOM15" class="table-code-comment"></td>
+	<td id="L15" class="table-code-linenumber" data-line-number="15">15</td>
+	<td id="LC15" class="table-code-code"><pre>    <span class="keyword"  title="VAL" >val</span> <a href="../content/_RationalExample.scala.html#T1823" class="in-code"><span class="ValSymbol"  id="T1823"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1823" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1823" data-cp-declaration="../content/_RationalExample.scala.html#T1823" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 544" >G</span></a> = <a href="../content/_RationalExample.scala.html#T1782" class="in-code"><span class="ValSymbol"  id="T1827"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1827" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1782,#T1827,#T1839,#T1862" data-cp-declaration="../content/_RationalExample.scala.html#T1782" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 548" >A</span></a> <a href="../content/_Rational.scala.html#T1445" class="in-code"><span class="OperatorFieldSymbol"  id="T1829"  data-cp-fullname="(that: org.codeprose.test.Rational)org.codeprose.test.Rational" data-cp-typeid="79" data-cp-internaltokenid="1829" data-cp-ownertypeid="15" data-cp-iscallable="true" data-cp-whereusedinfile="#T1829,#T1856,#T1902" data-cp-declaration="../content/_Rational.scala.html#T1445" data-cp-tooltipdisplay="true"   title="(that: org.codeprose.test.Rational)org.codeprose.test.Rational
+TokenType: PLUS
+Offset: 550" >+</span></a> <a href="../content/_RationalExample.scala.html#T1797" class="in-code"><span class="ValSymbol"  id="T1831"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1831" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1797,#T1831,#T1843,#T1870" data-cp-declaration="../content/_RationalExample.scala.html#T1797" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 552" >B</span></a></pre></td>
+</tr>
+
+
+<tr id="LCONT16" class="table-code-line">
+	<td id="LCOM16" class="table-code-comment"></td>
+	<td id="L16" class="table-code-linenumber" data-line-number="16">16</td>
+	<td id="LC16" class="table-code-code"><pre>    <span class="keyword"  title="VAL" >val</span> <a href="../content/_RationalExample.scala.html#T1835" class="in-code"><span class="ValSymbol"  id="T1835"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1835" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1835,#T1858,#T1891,#T1904,#T1918" data-cp-declaration="../content/_RationalExample.scala.html#T1835" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 562" >D</span></a> = <a href="../content/_RationalExample.scala.html#T1782" class="in-code"><span class="ValSymbol"  id="T1839"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1839" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1782,#T1827,#T1839,#T1862" data-cp-declaration="../content/_RationalExample.scala.html#T1782" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 566" >A</span></a>.<a href="../content/_Rational.scala.html#T1184" class="in-code"><span class="FunctionCallSymbol"  id="T1841"  data-cp-fullname="(that: org.codeprose.test.Rational)org.codeprose.test.Rational" data-cp-typeid="88" data-cp-internaltokenid="1841" data-cp-ownertypeid="15" data-cp-iscallable="true" data-cp-whereusedinfile="#T1841" data-cp-declaration="../content/_Rational.scala.html#T1184" data-cp-tooltipdisplay="true"   title="(that: org.codeprose.test.Rational)org.codeprose.test.Rational
+TokenType: VARID
+Offset: 568" >add</span></a>(<a href="../content/_RationalExample.scala.html#T1797" class="in-code"><span class="ValSymbol"  id="T1843"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1843" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1797,#T1831,#T1843,#T1870" data-cp-declaration="../content/_RationalExample.scala.html#T1797" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 572" >B</span></a>)</pre></td>
+</tr>
+
+
+<tr id="LCONT17" class="table-code-line">
+	<td id="LCOM17" class="table-code-comment"></td>
+	<td id="L17" class="table-code-linenumber" data-line-number="17">17</td>
+	<td id="LC17" class="table-code-code"><pre>    </pre></td>
+</tr>
+
+
+<tr id="LCONT18" class="table-code-line">
+	<td id="LCOM18" class="table-code-comment"></td>
+	<td id="L18" class="table-code-linenumber" data-line-number="18">18</td>
+	<td id="LC18" class="table-code-code"><pre><span class="comment">// Implicit conversion</span></pre></td>
+</tr>
+
+<tr id="LCONT19" class="table-code-line">
+	<td id="LCOM19" class="table-code-comment"></td>
+	<td id="L19" class="table-code-linenumber" data-line-number="19">19</td>
+	<td id="LC19" class="table-code-code"><pre>    <span class="keyword"  title="VAL" >val</span> <a href="../content/_RationalExample.scala.html#T1850" class="in-code"><span class="ValSymbol"  id="T1850"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1850" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1850,#T1926" data-cp-declaration="../content/_RationalExample.scala.html#T1850" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 614" >E</span></a> = <span class="numberLiteral"  data-cp-fullname="INTEGER_LITERAL" data-cp-implicitconversion="true" data-cp-implicitconversionids="[1]" data-cp-tooltipdisplay="true"   title="INTEGER_LITERAL
+Offset: 618" >5</span> <a href="../content/_Rational.scala.html#T1445" class="in-code"><span class="OperatorFieldSymbol"  id="T1856"  data-cp-fullname="(that: org.codeprose.test.Rational)org.codeprose.test.Rational" data-cp-typeid="79" data-cp-internaltokenid="1856" data-cp-ownertypeid="15" data-cp-iscallable="true" data-cp-whereusedinfile="#T1829,#T1856,#T1902" data-cp-declaration="../content/_Rational.scala.html#T1445" data-cp-tooltipdisplay="true"   title="(that: org.codeprose.test.Rational)org.codeprose.test.Rational
+TokenType: PLUS
+Offset: 620" >+</span></a> <a href="../content/_RationalExample.scala.html#T1835" class="in-code"><span class="ValSymbol"  id="T1858"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1858" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1835,#T1858,#T1891,#T1904,#T1918" data-cp-declaration="../content/_RationalExample.scala.html#T1835" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 622" >D</span></a></pre></td>
+</tr>
+
+
+<tr id="LCONT20" class="table-code-line">
+	<td id="LCOM20" class="table-code-comment"></td>
+	<td id="L20" class="table-code-linenumber" data-line-number="20">20</td>
+	<td id="LC20" class="table-code-code"><pre>    <span class="FunctionCallSymbol"  id="T1860"  data-cp-fullname="(x: Any)Unit" data-cp-typeid="68" data-cp-internaltokenid="1860" data-cp-ownertypeid="14" data-cp-iscallable="true" data-cp-whereusedinfile="#T1774,#T1860,#T1881,#T1908" data-cp-tooltipdisplay="true"   title="(x: Any)Unit
+TokenType: VARID
+Offset: 630" >println</span>(<a href="../content/_RationalExample.scala.html#T1782" class="in-code"><span class="ValSymbol"  id="T1862"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1862" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-implicitconversion="true" data-cp-implicitconversionids="[2]" data-cp-whereusedinfile="#T1782,#T1827,#T1839,#T1862" data-cp-declaration="../content/_RationalExample.scala.html#T1782" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 638" >A</span></a> <span class="OperatorFieldSymbol"  id="T1864"  data-cp-fullname="(other: String)String" data-cp-typeid="108" data-cp-internaltokenid="1864" data-cp-ownertypeid="109" data-cp-iscallable="true" data-cp-whereusedinfile="#T1864,#T1885" data-cp-tooltipdisplay="true"   title="(other: String)String
+TokenType: PLUS
+Offset: 640" >+</span> <span class="stringLiteral"  data-cp-fullname="STRING_LITERAL" data-cp-tooltipdisplay="true"   title="STRING_LITERAL
+Offset: 642" >&quot; + &quot;</span> <span class="OperatorFieldSymbol"  id="T1868"  data-cp-fullname="(x$1: Any)String" data-cp-typeid="22" data-cp-internaltokenid="1868" data-cp-ownertypeid="23" data-cp-iscallable="true" data-cp-whereusedinfile="#T1876,#T1872,#T1868,#T1897,#T1893,#T1889,#T1924,#T1920,#T1916" data-cp-tooltipdisplay="true"   title="(x$1: Any)String
+TokenType: PLUS
+Offset: 648" >+</span> <a href="../content/_RationalExample.scala.html#T1797" class="in-code"><span class="ValSymbol"  id="T1870"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1870" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1797,#T1831,#T1843,#T1870" data-cp-declaration="../content/_RationalExample.scala.html#T1797" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 650" >B</span></a> <span class="OperatorFieldSymbol"  id="T1872"  data-cp-fullname="(x$1: Any)String" data-cp-typeid="22" data-cp-internaltokenid="1872" data-cp-ownertypeid="23" data-cp-iscallable="true" data-cp-whereusedinfile="#T1876,#T1872,#T1868,#T1897,#T1893,#T1889,#T1924,#T1920,#T1916" data-cp-tooltipdisplay="true"   title="(x$1: Any)String
+TokenType: PLUS
+Offset: 652" >+</span> <span class="stringLiteral"  data-cp-fullname="STRING_LITERAL" data-cp-tooltipdisplay="true"   title="STRING_LITERAL
+Offset: 654" >&quot; = &quot;</span> <span class="OperatorFieldSymbol"  id="T1876"  data-cp-fullname="(x$1: Any)String" data-cp-typeid="22" data-cp-internaltokenid="1876" data-cp-ownertypeid="23" data-cp-iscallable="true" data-cp-whereusedinfile="#T1876,#T1872,#T1868,#T1897,#T1893,#T1889,#T1924,#T1920,#T1916" data-cp-tooltipdisplay="true"   title="(x$1: Any)String
+TokenType: PLUS
+Offset: 660" >+</span> <a href="../content/_RationalExample.scala.html#T1810" class="in-code"><span class="ValSymbol"  id="T1878"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1878" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1810,#T1878,#T1883,#T1900" data-cp-declaration="../content/_RationalExample.scala.html#T1810" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 662" >C</span></a>)</pre></td>
+</tr>
+
+
+<tr id="LCONT21" class="table-code-line">
+	<td id="LCOM21" class="table-code-comment"></td>
+	<td id="L21" class="table-code-linenumber" data-line-number="21">21</td>
+	<td id="LC21" class="table-code-code"><pre>    <span class="FunctionCallSymbol"  id="T1881"  data-cp-fullname="(x: Any)Unit" data-cp-typeid="68" data-cp-internaltokenid="1881" data-cp-ownertypeid="14" data-cp-iscallable="true" data-cp-whereusedinfile="#T1774,#T1860,#T1881,#T1908" data-cp-tooltipdisplay="true"   title="(x: Any)Unit
+TokenType: VARID
+Offset: 669" >println</span>(<a href="../content/_RationalExample.scala.html#T1810" class="in-code"><span class="ValSymbol"  id="T1883"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1883" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-implicitconversion="true" data-cp-implicitconversionids="[2]" data-cp-whereusedinfile="#T1810,#T1878,#T1883,#T1900" data-cp-declaration="../content/_RationalExample.scala.html#T1810" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 677" >C</span></a> <span class="OperatorFieldSymbol"  id="T1885"  data-cp-fullname="(other: String)String" data-cp-typeid="108" data-cp-internaltokenid="1885" data-cp-ownertypeid="109" data-cp-iscallable="true" data-cp-whereusedinfile="#T1864,#T1885" data-cp-tooltipdisplay="true"   title="(other: String)String
+TokenType: PLUS
+Offset: 679" >+</span> <span class="stringLiteral"  data-cp-fullname="STRING_LITERAL" data-cp-tooltipdisplay="true"   title="STRING_LITERAL
+Offset: 681" >&quot; + &quot;</span> <span class="OperatorFieldSymbol"  id="T1889"  data-cp-fullname="(x$1: Any)String" data-cp-typeid="22" data-cp-internaltokenid="1889" data-cp-ownertypeid="23" data-cp-iscallable="true" data-cp-whereusedinfile="#T1876,#T1872,#T1868,#T1897,#T1893,#T1889,#T1924,#T1920,#T1916" data-cp-tooltipdisplay="true"   title="(x$1: Any)String
+TokenType: PLUS
+Offset: 687" >+</span> <a href="../content/_RationalExample.scala.html#T1835" class="in-code"><span class="ValSymbol"  id="T1891"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1891" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1835,#T1858,#T1891,#T1904,#T1918" data-cp-declaration="../content/_RationalExample.scala.html#T1835" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 689" >D</span></a> <span class="OperatorFieldSymbol"  id="T1893"  data-cp-fullname="(x$1: Any)String" data-cp-typeid="22" data-cp-internaltokenid="1893" data-cp-ownertypeid="23" data-cp-iscallable="true" data-cp-whereusedinfile="#T1876,#T1872,#T1868,#T1897,#T1893,#T1889,#T1924,#T1920,#T1916" data-cp-tooltipdisplay="true"   title="(x$1: Any)String
+TokenType: PLUS
+Offset: 691" >+</span> <span class="stringLiteral"  data-cp-fullname="STRING_LITERAL" data-cp-tooltipdisplay="true"   title="STRING_LITERAL
+Offset: 693" >&quot; = &quot;</span> <span class="OperatorFieldSymbol"  id="T1897"  data-cp-fullname="(x$1: Any)String" data-cp-typeid="22" data-cp-internaltokenid="1897" data-cp-ownertypeid="23" data-cp-iscallable="true" data-cp-whereusedinfile="#T1876,#T1872,#T1868,#T1897,#T1893,#T1889,#T1924,#T1920,#T1916" data-cp-tooltipdisplay="true"   title="(x$1: Any)String
+TokenType: PLUS
+Offset: 699" >+</span> (<a href="../content/_RationalExample.scala.html#T1810" class="in-code"><span class="ValSymbol"  id="T1900"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1900" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1810,#T1878,#T1883,#T1900" data-cp-declaration="../content/_RationalExample.scala.html#T1810" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 702" >C</span></a> <a href="../content/_Rational.scala.html#T1445" class="in-code"><span class="OperatorFieldSymbol"  id="T1902"  data-cp-fullname="(that: org.codeprose.test.Rational)org.codeprose.test.Rational" data-cp-typeid="79" data-cp-internaltokenid="1902" data-cp-ownertypeid="15" data-cp-iscallable="true" data-cp-whereusedinfile="#T1829,#T1856,#T1902" data-cp-declaration="../content/_Rational.scala.html#T1445" data-cp-tooltipdisplay="true"   title="(that: org.codeprose.test.Rational)org.codeprose.test.Rational
+TokenType: PLUS
+Offset: 704" >+</span></a> <a href="../content/_RationalExample.scala.html#T1835" class="in-code"><span class="ValSymbol"  id="T1904"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1904" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1835,#T1858,#T1891,#T1904,#T1918" data-cp-declaration="../content/_RationalExample.scala.html#T1835" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 706" >D</span></a>))</pre></td>
+</tr>
+
+
+<tr id="LCONT22" class="table-code-line">
+	<td id="LCOM22" class="table-code-comment"></td>
+	<td id="L22" class="table-code-linenumber" data-line-number="22">22</td>
+	<td id="LC22" class="table-code-code"><pre>    <span class="FunctionCallSymbol"  id="T1908"  data-cp-fullname="(x: Any)Unit" data-cp-typeid="68" data-cp-internaltokenid="1908" data-cp-ownertypeid="14" data-cp-iscallable="true" data-cp-whereusedinfile="#T1774,#T1860,#T1881,#T1908" data-cp-tooltipdisplay="true"   title="(x: Any)Unit
+TokenType: VARID
+Offset: 714" >println</span>(<span class="numberLiteral"  data-cp-fullname="INTEGER_LITERAL" data-cp-tooltipdisplay="true"   title="INTEGER_LITERAL
+Offset: 722" >5</span> <span class="OperatorFieldSymbol"  id="T1912"  data-cp-fullname="(x: String)String" data-cp-typeid="110" data-cp-internaltokenid="1912" data-cp-ownertypeid="26" data-cp-iscallable="true" data-cp-whereusedinfile="#T1912" data-cp-tooltipdisplay="true"   title="(x: String)String
+TokenType: PLUS
+Offset: 724" >+</span> <span class="stringLiteral"  data-cp-fullname="STRING_LITERAL" data-cp-tooltipdisplay="true"   title="STRING_LITERAL
+Offset: 726" >&quot; + &quot;</span> <span class="OperatorFieldSymbol"  id="T1916"  data-cp-fullname="(x$1: Any)String" data-cp-typeid="22" data-cp-internaltokenid="1916" data-cp-ownertypeid="23" data-cp-iscallable="true" data-cp-whereusedinfile="#T1876,#T1872,#T1868,#T1897,#T1893,#T1889,#T1924,#T1920,#T1916" data-cp-tooltipdisplay="true"   title="(x$1: Any)String
+TokenType: PLUS
+Offset: 732" >+</span> <a href="../content/_RationalExample.scala.html#T1835" class="in-code"><span class="ValSymbol"  id="T1918"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1918" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1835,#T1858,#T1891,#T1904,#T1918" data-cp-declaration="../content/_RationalExample.scala.html#T1835" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 734" >D</span></a> <span class="OperatorFieldSymbol"  id="T1920"  data-cp-fullname="(x$1: Any)String" data-cp-typeid="22" data-cp-internaltokenid="1920" data-cp-ownertypeid="23" data-cp-iscallable="true" data-cp-whereusedinfile="#T1876,#T1872,#T1868,#T1897,#T1893,#T1889,#T1924,#T1920,#T1916" data-cp-tooltipdisplay="true"   title="(x$1: Any)String
+TokenType: PLUS
+Offset: 736" >+</span> <span class="stringLiteral"  data-cp-fullname="STRING_LITERAL" data-cp-tooltipdisplay="true"   title="STRING_LITERAL
+Offset: 738" >&quot; = &quot;</span> <span class="OperatorFieldSymbol"  id="T1924"  data-cp-fullname="(x$1: Any)String" data-cp-typeid="22" data-cp-internaltokenid="1924" data-cp-ownertypeid="23" data-cp-iscallable="true" data-cp-whereusedinfile="#T1876,#T1872,#T1868,#T1897,#T1893,#T1889,#T1924,#T1920,#T1916" data-cp-tooltipdisplay="true"   title="(x$1: Any)String
+TokenType: PLUS
+Offset: 744" >+</span> <a href="../content/_RationalExample.scala.html#T1850" class="in-code"><span class="ValSymbol"  id="T1926"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="1926" data-cp-ownertypeid="107" data-cp-iscallable="false" data-cp-whereusedinfile="#T1850,#T1926" data-cp-declaration="../content/_RationalExample.scala.html#T1850" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 746" >E</span></a>)</pre></td>
+</tr>
+
+
+<tr id="LCONT23" class="table-code-line">
+	<td id="LCOM23" class="table-code-comment"></td>
+	<td id="L23" class="table-code-linenumber" data-line-number="23">23</td>
+	<td id="LC23" class="table-code-code"><pre>  }</pre></td>
+</tr>
+
+
+<tr id="LCONT24" class="table-code-line">
+	<td id="LCOM24" class="table-code-comment"></td>
+	<td id="L24" class="table-code-linenumber" data-line-number="24">24</td>
+	<td id="LC24" class="table-code-code"><pre>}</pre></td>
+</tr>
+
+</table>
+
+
+
+          
+<div class="footer">generated by codeprose. help and support on <a href="http://github.com/gushai/codeprose" target="blank">github</a>.</div>
+</div>
+</div>
+</body>
+</html>

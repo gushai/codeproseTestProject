@@ -1,0 +1,361 @@
+
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+pre{
+	padding:0px;
+	margin:0px;
+}
+
+/* ====================================================== */
+body{
+	font-size:0.8em;
+}
+
+.header {
+	width:850px;
+	height:30px; 
+	border-bottom:1px solid #CFCFCF;	
+	margin:0px auto;
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+.footer {
+	width:850px;
+	border-top:1px solid #CFCFCF;
+	text-align:right;
+	margin-top:30px;
+	margin-bottom:30px;
+	font-size:0.8em;
+	padding-top:3px;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+.textframe{
+	width:800px;
+	margin-top:3em;
+	text-align:left;
+}
+
+.textboxinfo{
+	margin-top:auto;
+	width:75px;
+}
+
+.textbox{
+	width:675px;	
+	text-align:left;
+	margin-top:25px;	
+}
+
+code {
+	font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+	text-align:left;
+	background: #EEE;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.codebox{
+
+	font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+	width:650px;	
+	text-align:left;
+	margin-top:5px;
+	margin-left:5px;
+	padding:5px;
+	background: #EEE;
+	font-size:1.2em;
+}
+
+
+.commentspan{
+	color:green;
+}
+
+.packageSummary{
+	width:675px;	
+	text-align:left;
+	margin-top:25px;
+}
+
+.comment{
+	color:green;
+}
+
+.keyword {
+	color: #7F0055;
+	font-weight: bold;
+}
+
+.return {
+	color: #7F0055;
+	font-weight: bold;
+}
+
+.stringLiteral {
+	color: #2A00FF;
+}
+.numberLiteral {
+	color: #C48CFF;
+}
+.class{
+	color: #329399;	
+}
+.object {
+	color: #329399;
+}
+.trait{
+	color: #329399;
+}
+.package{
+	color: #006E04;
+}
+.scaladoc{
+	color: #3F5FBF;
+}
+
+/* SymbolDesignations for sematic highlighting */
+ .ObjectSymbol{
+	color: black;
+}
+
+.ClassSymbol{
+	color: black;
+}
+
+.TraitSymbol{
+	color: black;
+}
+
+.PackageSymbol{
+	color: black;
+}
+
+.ConstructorSymbol{
+	color: black;
+}
+
+.ImportedNameSymbol{
+	color: black;
+}
+
+.TypeParamSymbol{
+	color: black;
+}
+
+.ParamSymbol{
+	color: black;
+}
+
+.VarFieldSymbol{
+	color: black;
+}
+
+.ValFieldSymbol{
+	color: black;
+}
+
+.OperatorFieldSymbol{
+	color: black;
+}
+
+.VarSymbol{
+	color: black;
+}
+
+.ValSymbol{
+	color: black;
+}
+
+.FunctionCallSymbol{
+	color: black;
+}
+
+.ImplicitConversionSymbol{
+	color: black;
+}
+
+.ImplicitParamsSymbol{
+	color: black;
+}
+
+.DeprecatedSymbol{
+	color: black;
+}
+
+/* Table style*/
+
+/* Code table */
+
+.table-code{
+	margin-top:0em;	
+}
+
+.table-code-comment{
+	color:black;
+		
+	width:60px;
+
+	margin-top:0px;
+	margin-bottom:0px;
+	
+}
+
+.table-code-linenumber{
+	color:grey;
+	font-size:0.8em; 
+	text-align:right;
+	border-right:1px solid #E8E8E8;
+	
+	background: #F8F8F8;
+
+	width:30px;
+	margin-left: 2px;
+	margin-right: 2px;
+	padding-left:5px;
+	padding-right:5px;
+
+	margin-top:0px;
+	margin-bottom:0px;
+}
+
+.table-code-code{
+	background: #F8F8F8;
+
+	width:650px;
+
+	padding-left:5px;
+
+	margin-top:0.2em;
+	margin-bottom:2em;
+
+	font-size:1.2em; 
+	
+	padding-top:0.1em;
+	padding-bottom:0.1em;
+
+	font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+}
+
+/* Text table */
+
+.table-text{
+	margin-top:1em;
+	margin-bottom:1em;
+}
+
+.table-text-comment{
+	color:black;
+		
+	width:60px;
+
+	margin-top:0px;
+	margin-bottom:0px;
+	
+}
+
+.table-text-text{
+	text-align:left;
+
+	width:740px;
+}
+
+
+a.in-code{
+text-decoration: none;
+}
+
+
+a.in-code:link {
+    text-decoration: none;
+}
+
+a.in-code:visited {
+    text-decoration: none;
+}
+
+a.in-code:hover {
+    text-decoration: none;
+}
+
+a.in-code:active {
+    text-decoration: none;
+}
+
+/* Highlights */
+
+.highlightImplicitConversion {
+	background-color:yellow;
+}
+
+
+.highlightImplicitParameter {
+	background-color:green;
+}
+
+.highlightWhereUsedWithinFile {
+	background-color:yellow;
+}
+
+
+.cp-tooltip{
+	font-size:0.8em;
+}
+
+
+/* For highlight on selection with fade */
+:target {
+    -webkit-animation: target-fade 5s 1;
+    -moz-animation: target-fade 5s 1;
+}
+
+@-webkit-keyframes target-fade {
+    0% { background-color: rgba(255,255,0,1); }
+    100% { background-color: rgba(255,255,0,1); }
+}
+
+@-moz-keyframes target-fade {
+    0% { background-color: rgba(255,255,0,1); }
+    100% { background-color: rgba(255,255,0,1); }
+}

@@ -1,0 +1,199 @@
+
+<!doctype HTML>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="./style/style.css" media="screen" />
+<title>Where Used by Type Id</title>
+<script src="./js/codeprose.global.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.0/jquery-ui.js"></script>
+<script src="./js/codeprose.typeinformation.js"></script>
+<script src="./js/codeprose.whereusedinformation.js"></script> 
+<script src="./js/codeprose.packageinformation.js"></script>
+<script src="./js/codeprose.helper.js"></script>
+<script src="./js/codeprose.implicitinformation.js"></script>  
+
+<script type="text/javascript">
+
+
+ 
+  $(document).ready(function(){ 
+  
+
+
+  /*
+   * Creates a table with type id and name.
+     * Type names link to the where used entries below.
+   */
+  function getWhereUsedOverview() {
+    var domElemToAppend = "#ContentWhereUsedWithSourceSamplesSummary";
+
+    if(typeIds == null || typeIds.length==0){
+      $(domElemToAppend).append("<b>No type information found.</b>");
+    } else {
+
+  var typeInfoCollection = {};
+
+          for(var i = 0;i<typeIds.length;i++){
+        
+          var currentTypeId = typeIds[i];
+          var typeInfo = typeInformation[currentTypeId];
+        
+    var typeName = "";
+    var isArrow = false;
+    var declaredAs = "";  
+    
+    if(typeInfo.tpe.typeName === "BasicTypeInfo"){
+        typeName+= typeInfo.tpe.fullName;
+        declaredAs = typeInfo.tpe.declAs;
+    } else if(typeInfo.tpe.typeName === "ArrowTypeInfo"){
+        typeName+= typeInfo.tpe.name;
+        isArrow=true;
+        declaredAs="arrow";
+    } else { 
+        typeName+="-- Unknown -- ";
+    }
+
+    var tInfo = {};
+      tInfo.name = typeName;
+      tInfo.id = currentTypeId;
+  
+    if(typeInfoCollection[declaredAs]!=null){
+      var tmp = typeInfoCollection[declaredAs];
+      tmp.push(tInfo);  
+      typeInfoCollection[declaredAs] = tmp;
+    
+    } else {
+      typeInfoCollection[declaredAs] = [tInfo];
+    }
+  }
+  
+      $(domElemToAppend).append("<table>");
+//$(domElemToAppend).append("<tr>" + "<th style='width:6em;text-align:center;padding-bottom:0.4em;border-bottom:1px solid #CFCFCF;'>" + "<b>Type</b>" + "</th>" + "<th style='width:40em;text-align:center;border-bottom:1px solid #CFCFCF;'>" + "<b>Name</b>" + "</th>"+"</tr>")
+  for (var key in typeInfoCollection){
+
+    var keyHeadline = "<tr>" + "<td style='text-align:center;padding-left:1.3em;padding-top:0.8em;'><b>" + key.toString() + "</b></td>" + "<td style='padding-left:3em;'>"+ "</td>"+"</tr>";
+    $(domElemToAppend).append(keyHeadline);
+  
+    var typeGroup = typeInfoCollection[key];
+    
+    for(var i=0;i<typeGroup.length;i++){
+      var id = typeGroup[i].id;
+      var tpeName = typeGroup[i].name;
+
+      var title=key;
+      var tableEntry = "<tr>" + "<td style='text-align:right;padding-right:2em;padding-top:0.6em;margin-top:0.4em;'>" + "</td>" + "<td style='padding-left:3em;padding-top:0.6em;'>" + "<a href='#TYPEID" + id + "' title='" + title + "'>" + tpeName + "</a>"+ "</td>"+"</tr>";
+      $(domElemToAppend).append(tableEntry);
+    }
+
+  }
+  $(domElemToAppend).append("</table>");
+}
+  };
+  
+  function getWhereUsedDetails(){
+    
+    var domElemToAppend = "#ContentWhereUsedWithSourceSampleDetails";
+
+    if(typeIds == null || typeIds.length==0){
+      $(domElemToAppend).append("<b>No type information found.</b>");
+    } else {
+      
+      // For all type ids
+      for(var i = 0;i<typeIds.length;i++){
+        
+        var currentTypeId = typeIds[i];
+        var whereUsedInfo = whereUsedInformation[currentTypeId];
+        var typeInfo = typeInformation[currentTypeId];
+
+    var typeName = "";
+    if(typeInfo.tpe.typeName === "BasicTypeInfo"){
+      typeName+= typeInfo.tpe.fullName;
+    } else if(typeInfo.tpe.typeName === "ArrowTypeInfo"){
+      typeName+= typeInfo.tpe.name;
+    } else { 
+      typeName+="-- Unknown -- ";
+    }
+
+        $(domElemToAppend).append("<div style='margin-top:3em;' id='TYPEID" + currentTypeId +"'><b>" + typeName + "</b>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + "(Type Id: " +  currentTypeId + ")</div>");
+
+
+        if(whereUsedInfo == null || whereUsedInfo.length==0){
+          $(domElemToAppend).append("<div style='margin-top:2em;'>" + "no where used information found" + "</div>");
+        } else {
+
+          var whereUsedExamples = getWhereUsedDetailsHandleWhereUsedEntires(whereUsedInfo);
+          $(domElemToAppend).append(whereUsedExamples);
+        }
+      }
+    }
+
+  };
+
+  function getWhereUsedDetailsHandleWhereUsedEntires(whereUsedInfo) {
+    var divsToAppend = "";
+    // For all source positions       
+    for(var srcPos=0;srcPos<whereUsedInfo.length;srcPos++){
+      var filename = whereUsedInfo[srcPos].srcFilename;
+      var codeSample = whereUsedInfo[srcPos].sourceSample;
+      var linkToSrcFile = whereUsedInfo[srcPos].link;
+      var tokenId = whereUsedInfo[srcPos].tokenId;
+
+      divsToAppend += getWhereUsedCodeSampleDiv(filename,codeSample,linkToSrcFile,tokenId);
+    }
+    return divsToAppend;
+  };
+
+
+  function getWhereUsedCodeSampleDiv(filename,codeSample,linkToSrcFile,tokenId){
+    sampleCode = ""
+    if(codeSample.length>2){
+                // TODO: Highlight token
+                sampleCode = codeSample[0] + codeSample[1] + codeSample[2]; 
+                //sampleCode = codeSample[0] + "<span style='background-color:yellow;'>"+codeSample[1] +"</span>" + codeSample[2];       
+            }   
+            var srcSampleDiv = "<div style='border-top:1px solid #CFCFCF;margin-top:2em;margin-left:2em;padding-top:1em;padding-left:1em;'>" + "<b>" + filename + "</b><br/><br/>" + "<div class='table-code-code'>" + "<a class='in-code' href='."+linkToSrcFile + "#T" + tokenId + "'><span style='color:black;'><pre>" + sampleCode + "</pre></span></a>" +"</div>"+"</div>";
+
+          return srcSampleDiv;
+  };
+
+  getWhereUsedOverview();
+  getWhereUsedDetails();
+
+});     
+      
+
+</script>
+</head>
+<body>
+<div align="center">
+<div class="header" id="header" align="center"> 
+<div style="float:left;"> 
+<span style="font-size:1.5em;font-weight:bold;">Where Used by Type Id&nbsp;</span></div>
+<div style="float:right;"><a style="color:black;font-weight:bold;" href="./index.html">overview</a></div>
+</div>
+<div class="content">
+<noscript><div style="margin:2em;"><b>Activate JavaScript for more features</b>.</div></noscript>
+
+<div class="textframe">
+<h2>Summary</h2>
+<div class="textbox">
+<noscript><div style="margin-left:2em;">Activate JavaScript for this feature.</div></noscript><div id="ContentWhereUsedWithSourceSamplesSummary"></div>
+</div>
+</div>
+
+<div class="textframe">
+<h2>Details</h2>
+<div class="textbox">
+<noscript><div style="margin-left:2em;">Activate JavaScript for this feature.</div></noscript><div id="ContentWhereUsedWithSourceSampleDetails"></div>
+</div>
+</div>
+
+
+
+<div class="footer">generated by codeprose. help and support on <a href="http://github.com/gushai/codeprose" target="blank">github</a>.</div>
+</div>
+</div>
+</body>
+</html>

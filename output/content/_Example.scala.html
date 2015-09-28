@@ -1,0 +1,474 @@
+
+<!doctype HTML>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.0/themes/black-tie/jquery-ui.css" media="screen" />
+<title>Example.scala</title>
+<script src="../js/codeprose.global.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.0/jquery-ui.js"></script>
+<script src="../js/codeprose.typeinformation.js"></script>
+<script src="../js/codeprose.whereusedinformation.js"></script>   
+<script src="../js/codeprose.packageinformation.js"></script>
+<script src="../js/codeprose.helper.js"></script>
+<script src="../js/codeprose.implicitinformation.js"></script>          
+            
+                
+<script type="text/javascript">
+
+$(document).ready(function(){ 
+
+        /*
+         * Highlights other uses of the token under the mouse within the file.
+         */
+        $("[id^='T']").hover( 
+          function(){ toHighlight = $(this).data("cp-whereusedinfile"); $(toHighlight).toggleClass("highlightWhereUsedWithinFile"); },
+          function(){ toHighlight = $(this).data("cp-whereusedinfile"); $(toHighlight).toggleClass("highlightWhereUsedWithinFile"); }
+        );
+
+
+        /*
+         * Highlights/unhighlights implicit conversions and implicit 
+         * parameters within the file.
+         */
+      function highlightImplicitConversionsAndParameters(){
+
+        // Implicit conversions
+        $('*[data-cp-implicitconversion=true]').toggleClass("highlightImplicitConversion");
+
+        // Implicit parameters
+        // Color to use highlightImplicitParameter
+        $('*[data-cp-implicitparameter=true]').toggleClass("highlightImplicitParameter");
+      }
+
+
+      /*
+       * Central function handling key events.
+       * Mappings:
+       *  -  'i' -> highlightImplicitConversionsAndParameters()
+       */
+      // Key events     
+      $(document).keypress(function(e){
+        // i
+        if(e.keyCode == 105){ highlightImplicitConversionsAndParameters() }     
+      });
+
+      /*
+       * Assigns the tooltip information to tokens.
+       */
+       // Tooltip
+       $('*[data-cp-tooltipdisplay=true]').tooltip({
+          content: function () {           
+          return createTooltipHtmlFromDataAttr(this);
+        },
+          show: null,
+          disabled: false,
+          // position: {of: $("#LCOM0"), at: "left"},
+          position: { my: 'left-center', at: "right+7 right"},
+          close: function (event, ui) {
+            ui.tooltip.hover(
+            function () { $(this).stop(true).fadeTo(400, 1); },
+            function () { $(this).fadeOut("100", function () { $(this).remove(); }) });
+        }
+      });
+      
+      
+
+
+      
+
+
+
+});
+</script>
+</head>
+<body>
+<div align="center">
+<div class="header" id="header" align="center"> 
+<div style="float:left;"> 
+<span style="font-size:1.5em;font-weight:bold;" title="/home/gus/coding/scala/bscthesis/codeprose/codeproseTestProject/codeproseTestProject/src/main/scala/org/codeprose/test/Example.scala">Example.scala&nbsp;</span><span style="font-size:1em;">org.codeprose.test</span></div>
+<div style="float:right;"><a style="color:black;font-weight:bold;" href="../index.html">overview</a></div>
+</div>
+<div class="content">
+<noscript><div style="margin:2em;"><b>Activate JavaScript for more features</b>.</div></noscript>
+<table class="table-code">
+<tr id="LCONT0" class="table-code-line">
+	<td id="LCOM0" class="table-code-comment"></td>
+	<td id="L0" class="table-code-linenumber" data-line-number="0">0</td>
+	<td id="LC0" class="table-code-code"><pre><span class="keyword"  title="PACKAGE" >package</span> <span class="PackageSymbol"  id="T20"  data-cp-fullname="<none>.org$" data-cp-typeid="2" data-cp-internaltokenid="20" data-cp-ownertypeid="510" data-cp-iscallable="false" data-cp-whereusedinfile="#T20" data-cp-tooltipdisplay="true"   title="<none>.org$
+TokenType: VARID
+Offset: 8" >org</span>.<span class="PackageSymbol"  id="T22"  data-cp-fullname="org.codeprose$" data-cp-typeid="1" data-cp-internaltokenid="22" data-cp-ownertypeid="2" data-cp-iscallable="false" data-cp-whereusedinfile="#T22" data-cp-tooltipdisplay="true"   title="org.codeprose$
+TokenType: VARID
+Offset: 12" >codeprose</span>.<span class="PackageSymbol"  id="T24"  data-cp-fullname="org.codeprose.test$" data-cp-typeid="3" data-cp-internaltokenid="24" data-cp-ownertypeid="1" data-cp-iscallable="false" data-cp-whereusedinfile="#T24,#T24" data-cp-tooltipdisplay="true"   title="org.codeprose.test$
+TokenType: VARID
+Offset: 22" >test</span></pre></td>
+</tr>
+
+</table>
+
+<table class="table-code">
+</table>
+
+<table class="table-text"><tr class="table-text-line">
+<td class="table-text-comment"></td>
+<td class="table-text-text"><h1 id = "Test_Codeprose_Features">Test Codeprose Features</h1>
+
+<p>Included are some code example to test Codeprose's supported features.</p>
+
+<h2 id = "Overview">Overview</h2>
+
+<ol>
+<li>Simple Stuff</li>
+<li>Complex Stuff</li>
+<li>Companion Object</li>
+</ol></td>
+</tr>
+</table>
+
+<table class="table-code">
+</table>
+
+<table class="table-text"><tr class="table-text-line">
+<td class="table-text-comment"></td>
+<td class="table-text-text"><h2 id = "Simple_Stuff">Simple Stuff</h2>
+
+<p>Let's start with simple code.</p></td>
+</tr>
+</table>
+
+<table class="table-code">
+<tr id="LCONT23" class="table-code-line">
+	<td id="LCOM23" class="table-code-comment"></td>
+	<td id="L23" class="table-code-linenumber" data-line-number="23">23</td>
+	<td id="LC23" class="table-code-code"><pre><span class="keyword"  title="OBJECT" >object</span> <a href="../content/_Example.scala.html#T32" class="in-code"><span  id="T32"  data-cp-fullname="org.codeprose.test.Example$" data-cp-typeid="5" data-cp-internaltokenid="32" data-cp-ownertypeid="3" data-cp-iscallable="false" data-cp-whereusedinfile="#T32" data-cp-declaration="../content/_Example.scala.html#T32" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Example$
+TokenType: VARID
+Offset: 333" >Example</span></a> {</pre></td>
+</tr>
+
+
+<tr id="LCONT24" class="table-code-line">
+	<td id="LCOM24" class="table-code-comment"></td>
+	<td id="L24" class="table-code-linenumber" data-line-number="24">24</td>
+	<td id="LC24" class="table-code-code"><pre>  <span class="keyword"  title="DEF" >def</span> <a href="../content/_Example.scala.html#T38" class="in-code"><span  id="T38"  data-cp-fullname="(args: Array[String])Unit" data-cp-typeid="8" data-cp-internaltokenid="38" data-cp-ownertypeid="5" data-cp-iscallable="true" data-cp-whereusedinfile="#T38" data-cp-declaration="../content/_Example.scala.html#T38" data-cp-tooltipdisplay="true"   title="(args: Array[String])Unit
+TokenType: VARID
+Offset: 352" >main</span></a>(<a href="../content/_Example.scala.html#T40" class="in-code"><span class="ParamSymbol"  id="T40"  data-cp-fullname="scala.Array" data-cp-typeid="43" data-cp-internaltokenid="40" data-cp-ownertypeid="8" data-cp-iscallable="false" data-cp-whereusedinfile="#T40" data-cp-declaration="../content/_Example.scala.html#T40" data-cp-tooltipdisplay="true"   title="scala.Array
+TokenType: VARID
+Offset: 357" >args</span></a>: <span class="ClassSymbol"  id="T43"  data-cp-fullname="scala.Array" data-cp-typeid="45" data-cp-internaltokenid="43" data-cp-ownertypeid="12" data-cp-iscallable="false" data-cp-whereusedinfile="#T43" data-cp-tooltipdisplay="true"   title="scala.Array
+TokenType: VARID
+Offset: 363" >Array</span>[<span  id="T45"  data-cp-fullname="java.lang.String" data-cp-typeid="13" data-cp-internaltokenid="45" data-cp-ownertypeid="14" data-cp-iscallable="false" data-cp-whereusedinfile="#T45,#T194,#T210" data-cp-tooltipdisplay="true"   title="java.lang.String
+TokenType: VARID
+Offset: 369" >String</span>]): <span class="ClassSymbol"  id="T50"  data-cp-fullname="scala.Unit" data-cp-typeid="9" data-cp-internaltokenid="50" data-cp-ownertypeid="12" data-cp-iscallable="false" data-cp-whereusedinfile="#T50,#T238" data-cp-tooltipdisplay="true"   title="scala.Unit
+TokenType: VARID
+Offset: 379" >Unit</span> = {</pre></td>
+</tr>
+
+
+<tr id="LCONT25" class="table-code-line">
+	<td id="LCOM25" class="table-code-comment"></td>
+	<td id="L25" class="table-code-linenumber" data-line-number="25">25</td>
+	<td id="LC25" class="table-code-code"><pre>    <span class="keyword"  title="VAL" >val</span> <a href="../content/_Example.scala.html#T58" class="in-code"><span class="ValSymbol"  id="T58"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="58" data-cp-ownertypeid="8" data-cp-iscallable="false" data-cp-whereusedinfile="#T58,#T90,#T98" data-cp-declaration="../content/_Example.scala.html#T58" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 399" >A</span></a> = <span class="keyword"  title="NEW" >new</span> <a href="../content/_Rational.scala.html#T1101" class="in-code"><span class="ClassSymbol"  id="T64"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="64" data-cp-ownertypeid="3" data-cp-iscallable="false" data-cp-whereusedinfile="#T64,#T79" data-cp-declaration="../content/_Rational.scala.html#T1101" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 407" >Rational</span></a>(<span class="numberLiteral"  data-cp-fullname="INTEGER_LITERAL" data-cp-tooltipdisplay="true"   title="INTEGER_LITERAL
+Offset: 416" >1</span>,<span class="numberLiteral"  data-cp-fullname="INTEGER_LITERAL" data-cp-tooltipdisplay="true"   title="INTEGER_LITERAL
+Offset: 418" >7</span>)</pre></td>
+</tr>
+
+
+<tr id="LCONT26" class="table-code-line">
+	<td id="LCOM26" class="table-code-comment"></td>
+	<td id="L26" class="table-code-linenumber" data-line-number="26">26</td>
+	<td id="LC26" class="table-code-code"><pre>    <span class="keyword"  title="VAL" >val</span> <a href="../content/_Example.scala.html#T73" class="in-code"><span class="ValSymbol"  id="T73"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="73" data-cp-ownertypeid="8" data-cp-iscallable="false" data-cp-whereusedinfile="#T73,#T94,#T106" data-cp-declaration="../content/_Example.scala.html#T73" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 430" >B</span></a> = <span class="keyword"  title="NEW" >new</span> <a href="../content/_Rational.scala.html#T1101" class="in-code"><span class="ClassSymbol"  id="T79"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="79" data-cp-ownertypeid="3" data-cp-iscallable="false" data-cp-whereusedinfile="#T64,#T79" data-cp-declaration="../content/_Rational.scala.html#T1101" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 438" >Rational</span></a>(<span class="numberLiteral"  data-cp-fullname="INTEGER_LITERAL" data-cp-tooltipdisplay="true"   title="INTEGER_LITERAL
+Offset: 447" >1</span>)</pre></td>
+</tr>
+
+
+<tr id="LCONT27" class="table-code-line">
+	<td id="LCOM27" class="table-code-comment"></td>
+	<td id="L27" class="table-code-linenumber" data-line-number="27">27</td>
+	<td id="LC27" class="table-code-code"><pre>    <span class="keyword"  title="VAL" >val</span> <a href="../content/_Example.scala.html#T86" class="in-code"><span class="ValSymbol"  id="T86"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="86" data-cp-ownertypeid="8" data-cp-iscallable="false" data-cp-whereusedinfile="#T86,#T114" data-cp-declaration="../content/_Example.scala.html#T86" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 458" >C</span></a> = <a href="../content/_Example.scala.html#T58" class="in-code"><span class="ValSymbol"  id="T90"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="90" data-cp-ownertypeid="8" data-cp-iscallable="false" data-cp-whereusedinfile="#T58,#T90,#T98" data-cp-declaration="../content/_Example.scala.html#T58" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 462" >A</span></a> <span class="OperatorFieldSymbol"  id="T92"  data-cp-fullname="(that: org.codeprose.test.Rational)org.codeprose.test.Rational" data-cp-typeid="16" data-cp-internaltokenid="92" data-cp-ownertypeid="15" data-cp-iscallable="true" data-cp-whereusedinfile="#T92" data-cp-tooltipdisplay="true"   title="(that: org.codeprose.test.Rational)org.codeprose.test.Rational
+TokenType: PLUS
+Offset: 464" >+</span> <a href="../content/_Example.scala.html#T73" class="in-code"><span class="ValSymbol"  id="T94"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="94" data-cp-ownertypeid="8" data-cp-iscallable="false" data-cp-whereusedinfile="#T73,#T94,#T106" data-cp-declaration="../content/_Example.scala.html#T73" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 466" >B</span></a></pre></td>
+</tr>
+
+
+<tr id="LCONT28" class="table-code-line">
+	<td id="LCOM28" class="table-code-comment"></td>
+	<td id="L28" class="table-code-linenumber" data-line-number="28">28</td>
+	<td id="LC28" class="table-code-code"><pre>    <span class="FunctionCallSymbol"  id="T96"  data-cp-fullname="(x: Any)Unit" data-cp-typeid="18" data-cp-internaltokenid="96" data-cp-ownertypeid="14" data-cp-iscallable="true" data-cp-whereusedinfile="#T96" data-cp-tooltipdisplay="true"   title="(x: Any)Unit
+TokenType: VARID
+Offset: 476" >println</span>(<a href="../content/_Example.scala.html#T58" class="in-code"><span class="ValSymbol"  id="T98"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="98" data-cp-ownertypeid="8" data-cp-iscallable="false" data-cp-implicitconversion="true" data-cp-implicitconversionids="[0]" data-cp-whereusedinfile="#T58,#T90,#T98" data-cp-declaration="../content/_Example.scala.html#T58" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 484" >A</span></a> <span class="OperatorFieldSymbol"  id="T100"  data-cp-fullname="(other: String)String" data-cp-typeid="20" data-cp-internaltokenid="100" data-cp-ownertypeid="21" data-cp-iscallable="true" data-cp-whereusedinfile="#T100" data-cp-tooltipdisplay="true"   title="(other: String)String
+TokenType: PLUS
+Offset: 486" >+</span> <span class="stringLiteral"  data-cp-fullname="STRING_LITERAL" data-cp-tooltipdisplay="true"   title="STRING_LITERAL
+Offset: 488" >&quot; + &quot;</span> <span class="OperatorFieldSymbol"  id="T104"  data-cp-fullname="(x$1: Any)String" data-cp-typeid="22" data-cp-internaltokenid="104" data-cp-ownertypeid="23" data-cp-iscallable="true" data-cp-whereusedinfile="#T112,#T108,#T104" data-cp-tooltipdisplay="true"   title="(x$1: Any)String
+TokenType: PLUS
+Offset: 494" >+</span> <a href="../content/_Example.scala.html#T73" class="in-code"><span class="ValSymbol"  id="T106"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="106" data-cp-ownertypeid="8" data-cp-iscallable="false" data-cp-whereusedinfile="#T73,#T94,#T106" data-cp-declaration="../content/_Example.scala.html#T73" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 496" >B</span></a> <span class="OperatorFieldSymbol"  id="T108"  data-cp-fullname="(x$1: Any)String" data-cp-typeid="22" data-cp-internaltokenid="108" data-cp-ownertypeid="23" data-cp-iscallable="true" data-cp-whereusedinfile="#T112,#T108,#T104" data-cp-tooltipdisplay="true"   title="(x$1: Any)String
+TokenType: PLUS
+Offset: 498" >+</span> <span class="stringLiteral"  data-cp-fullname="STRING_LITERAL" data-cp-tooltipdisplay="true"   title="STRING_LITERAL
+Offset: 500" >&quot; = &quot;</span> <span class="OperatorFieldSymbol"  id="T112"  data-cp-fullname="(x$1: Any)String" data-cp-typeid="22" data-cp-internaltokenid="112" data-cp-ownertypeid="23" data-cp-iscallable="true" data-cp-whereusedinfile="#T112,#T108,#T104" data-cp-tooltipdisplay="true"   title="(x$1: Any)String
+TokenType: PLUS
+Offset: 506" >+</span> <a href="../content/_Example.scala.html#T86" class="in-code"><span class="ValSymbol"  id="T114"  data-cp-fullname="org.codeprose.test.Rational" data-cp-typeid="15" data-cp-internaltokenid="114" data-cp-ownertypeid="8" data-cp-iscallable="false" data-cp-whereusedinfile="#T86,#T114" data-cp-declaration="../content/_Example.scala.html#T86" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Rational
+TokenType: VARID
+Offset: 508" >C</span></a>)</pre></td>
+</tr>
+
+
+<tr id="LCONT29" class="table-code-line">
+	<td id="LCOM29" class="table-code-comment"></td>
+	<td id="L29" class="table-code-linenumber" data-line-number="29">29</td>
+	<td id="LC29" class="table-code-code"><pre>  }</pre></td>
+</tr>
+
+
+<tr id="LCONT30" class="table-code-line">
+	<td id="LCOM30" class="table-code-comment"></td>
+	<td id="L30" class="table-code-linenumber" data-line-number="30">30</td>
+	<td id="LC30" class="table-code-code"><pre>}</pre></td>
+</tr>
+
+</table>
+
+<table class="table-code">
+</table>
+
+<table class="table-text"><tr class="table-text-line">
+<td class="table-text-comment"></td>
+<td class="table-text-text"><h2 id = "Complex_stuff">Complex stuff</h2>
+
+<p>We can even understand complex stuff.</p></td>
+</tr>
+</table>
+
+<table class="table-code">
+<tr id="LCONT38" class="table-code-line">
+	<td id="LCOM38" class="table-code-comment"></td>
+	<td id="L38" class="table-code-linenumber" data-line-number="38">38</td>
+	<td id="LC38" class="table-code-code"><pre><span class="keyword"  title="TRAIT" >trait</span> <a href="../content/_Example.scala.html#T125" class="in-code"><span  id="T125"  data-cp-fullname="org.codeprose.test.Foo" data-cp-typeid="24" data-cp-internaltokenid="125" data-cp-ownertypeid="3" data-cp-iscallable="false" data-cp-whereusedinfile="#T125" data-cp-declaration="../content/_Example.scala.html#T125" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Foo
+TokenType: VARID
+Offset: 607" >Foo</span></a> {</pre></td>
+</tr>
+
+
+<tr id="LCONT39" class="table-code-line">
+	<td id="LCOM39" class="table-code-comment"></td>
+	<td id="L39" class="table-code-linenumber" data-line-number="39">39</td>
+	<td id="LC39" class="table-code-code"><pre>  <span class="keyword"  title="TRAIT" >trait</span> <a href="../content/_Example.scala.html#T131" class="in-code"><span  id="T131"  data-cp-fullname="org.codeprose.test.Foo$Bar" data-cp-typeid="25" data-cp-internaltokenid="131" data-cp-ownertypeid="24" data-cp-iscallable="false" data-cp-whereusedinfile="#T131" data-cp-declaration="../content/_Example.scala.html#T131" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Foo$Bar
+TokenType: VARID
+Offset: 622" >Bar</span></a> {</pre></td>
+</tr>
+
+
+<tr id="LCONT40" class="table-code-line">
+	<td id="LCOM40" class="table-code-comment"></td>
+	<td id="L40" class="table-code-linenumber" data-line-number="40">40</td>
+	<td id="LC40" class="table-code-code"><pre>    <span class="keyword"  title="VAL" >val</span> <a href="../content/_Example.scala.html#T137" class="in-code"><span class="ValFieldSymbol"  id="T137"  data-cp-fullname="scala.Int" data-cp-typeid="26" data-cp-internaltokenid="137" data-cp-ownertypeid="25" data-cp-iscallable="false" data-cp-whereusedinfile="#T137" data-cp-declaration="../content/_Example.scala.html#T137" data-cp-tooltipdisplay="true"   title="scala.Int
+TokenType: VARID
+Offset: 636" >foo</span></a> = <span class="numberLiteral"  data-cp-fullname="INTEGER_LITERAL" data-cp-tooltipdisplay="true"   title="INTEGER_LITERAL
+Offset: 642" >42</span></pre></td>
+</tr>
+
+
+<tr id="LCONT41" class="table-code-line">
+	<td id="LCOM41" class="table-code-comment"></td>
+	<td id="L41" class="table-code-linenumber" data-line-number="41">41</td>
+	<td id="LC41" class="table-code-code"><pre>  }</pre></td>
+</tr>
+
+
+<tr id="LCONT42" class="table-code-line">
+	<td id="LCOM42" class="table-code-comment"></td>
+	<td id="L42" class="table-code-linenumber" data-line-number="42">42</td>
+	<td id="LC42" class="table-code-code"><pre>  <span class="keyword"  title="OBJECT" >object</span> <a href="../content/_Example.scala.html#T147" class="in-code"><span  id="T147"  data-cp-fullname="org.codeprose.test.Foo$innerobject$" data-cp-typeid="27" data-cp-internaltokenid="147" data-cp-ownertypeid="24" data-cp-iscallable="false" data-cp-whereusedinfile="#T147" data-cp-declaration="../content/_Example.scala.html#T147" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Foo$innerobject$
+TokenType: VARID
+Offset: 659" >innerobject</span></a> {</pre></td>
+</tr>
+
+
+<tr id="LCONT43" class="table-code-line">
+	<td id="LCOM43" class="table-code-comment"></td>
+	<td id="L43" class="table-code-linenumber" data-line-number="43">43</td>
+	<td id="LC43" class="table-code-code"><pre>    <span class="keyword"  title="TRAIT" >trait</span> <a href="../content/_Example.scala.html#T153" class="in-code"><span  id="T153"  data-cp-fullname="org.codeprose.test.Foo$innerobject$$Baz" data-cp-typeid="28" data-cp-internaltokenid="153" data-cp-ownertypeid="27" data-cp-iscallable="false" data-cp-whereusedinfile="#T153" data-cp-declaration="../content/_Example.scala.html#T153" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Foo$innerobject$$Baz
+TokenType: VARID
+Offset: 683" >Baz</span></a> {}</pre></td>
+</tr>
+
+
+<tr id="LCONT44" class="table-code-line">
+	<td id="LCOM44" class="table-code-comment"></td>
+	<td id="L44" class="table-code-linenumber" data-line-number="44">44</td>
+	<td id="LC44" class="table-code-code"><pre>  }</pre></td>
+</tr>
+
+
+<tr id="LCONT45" class="table-code-line">
+	<td id="LCOM45" class="table-code-comment"></td>
+	<td id="L45" class="table-code-linenumber" data-line-number="45">45</td>
+	<td id="LC45" class="table-code-code"><pre>  <span class="keyword"  title="VAL" >val</span> <a href="../content/_Example.scala.html#T162" class="in-code"><span class="ValFieldSymbol"  id="T162"  data-cp-fullname="scala.Function0" data-cp-typeid="29" data-cp-internaltokenid="162" data-cp-ownertypeid="24" data-cp-iscallable="false" data-cp-whereusedinfile="#T162" data-cp-declaration="../content/_Example.scala.html#T162" data-cp-tooltipdisplay="true"   title="scala.Function0
+TokenType: VARID
+Offset: 701" >x</span></a> = () => {</pre></td>
+</tr>
+
+
+<tr id="LCONT46" class="table-code-line">
+	<td id="LCOM46" class="table-code-comment"></td>
+	<td id="L46" class="table-code-linenumber" data-line-number="46">46</td>
+	<td id="LC46" class="table-code-code"><pre>    <span class="keyword"  title="TRAIT" >trait</span> <a href="../content/_Example.scala.html#T175" class="in-code"><span  id="T175"  data-cp-fullname="org.codeprose.test.Foo$Boo" data-cp-typeid="30" data-cp-internaltokenid="175" data-cp-iscallable="false" data-cp-whereusedinfile="#T175" data-cp-declaration="../content/_Example.scala.html#T175" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Foo$Boo
+TokenType: VARID
+Offset: 723" >Boo</span></a></pre></td>
+</tr>
+
+
+<tr id="LCONT47" class="table-code-line">
+	<td id="LCOM47" class="table-code-comment"></td>
+	<td id="L47" class="table-code-linenumber" data-line-number="47">47</td>
+	<td id="LC47" class="table-code-code"><pre>  }</pre></td>
+</tr>
+
+
+<tr id="LCONT48" class="table-code-line">
+	<td id="LCOM48" class="table-code-comment"></td>
+	<td id="L48" class="table-code-linenumber" data-line-number="48">48</td>
+	<td id="LC48" class="table-code-code"><pre>  <span class="keyword"  title="TRAIT" >trait</span> <a href="../content/_Example.scala.html#T181" class="in-code"><span  id="T181"  data-cp-fullname="org.codeprose.test.Foo$Boo" data-cp-typeid="31" data-cp-internaltokenid="181" data-cp-ownertypeid="24" data-cp-iscallable="false" data-cp-whereusedinfile="#T181" data-cp-declaration="../content/_Example.scala.html#T181" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Foo$Boo
+TokenType: VARID
+Offset: 740" >Boo</span></a></pre></td>
+</tr>
+
+
+<tr id="LCONT49" class="table-code-line">
+	<td id="LCOM49" class="table-code-comment"></td>
+	<td id="L49" class="table-code-linenumber" data-line-number="49">49</td>
+	<td id="LC49" class="table-code-code"><pre>}</pre></td>
+</tr>
+
+</table>
+
+<table class="table-code">
+</table>
+
+<table class="table-text"><tr class="table-text-line">
+<td class="table-text-comment"></td>
+<td class="table-text-text"><h1 id = "Companion_Object">Companion Object</h1>
+
+<p>Test jump to companion object.</p></td>
+</tr>
+</table>
+
+<table class="table-code">
+<tr id="LCONT57" class="table-code-line">
+	<td id="LCOM57" class="table-code-comment"></td>
+	<td id="L57" class="table-code-linenumber" data-line-number="57">57</td>
+	<td id="LC57" class="table-code-code"><pre><span class="keyword"  title="CLASS" >class</span> <a href="../content/_Example.scala.html#T189" class="in-code"><span  id="T189"  data-cp-fullname="org.codeprose.test.Companion" data-cp-typeid="32" data-cp-internaltokenid="189" data-cp-ownertypeid="3" data-cp-iscallable="false" data-cp-whereusedinfile="#T189,#T217,#T199,#T250" data-cp-declaration="../content/_Example.scala.html#T189" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Companion
+TokenType: VARID
+Offset: 834" >Companion</span></a>(<a href="../content/_Example.scala.html#T191" class="in-code"><span class="ValFieldSymbol"  id="T191"  data-cp-fullname="java.lang.String" data-cp-typeid="33" data-cp-internaltokenid="191" data-cp-ownertypeid="32" data-cp-iscallable="false" data-cp-whereusedinfile="#T191" data-cp-declaration="../content/_Example.scala.html#T191" data-cp-tooltipdisplay="true"   title="java.lang.String
+TokenType: VARID
+Offset: 844" >foo</span></a>: <span class="ClassSymbol"  id="T194"  data-cp-fullname="java.lang.String" data-cp-typeid="13" data-cp-internaltokenid="194" data-cp-ownertypeid="14" data-cp-iscallable="false" data-cp-whereusedinfile="#T45,#T194,#T210" data-cp-tooltipdisplay="true"   title="java.lang.String
+TokenType: VARID
+Offset: 849" >String</span>)</pre></td>
+</tr>
+
+
+<tr id="LCONT58" class="table-code-line">
+	<td id="LCOM58" class="table-code-comment"></td>
+	<td id="L58" class="table-code-linenumber" data-line-number="58">58</td>
+	<td id="LC58" class="table-code-code"><pre><span class="keyword"  title="OBJECT" >object</span> <a href="../content/_Example.scala.html#T199" class="in-code"><span  id="T199"  data-cp-fullname="org.codeprose.test.Companion$" data-cp-typeid="34" data-cp-internaltokenid="199" data-cp-ownertypeid="3" data-cp-iscallable="false" data-cp-whereusedinfile="#T189,#T217,#T199,#T250" data-cp-declaration="../content/_Example.scala.html#T199" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Companion$
+TokenType: VARID
+Offset: 865" >Companion</span></a> {</pre></td>
+</tr>
+
+
+<tr id="LCONT59" class="table-code-line">
+	<td id="LCOM59" class="table-code-comment"></td>
+	<td id="L59" class="table-code-linenumber" data-line-number="59">59</td>
+	<td id="LC59" class="table-code-code"><pre>  <span class="keyword"  title="DEF" >def</span> <a href="../content/_Example.scala.html#T205" class="in-code"><span  id="T205"  data-cp-fullname="(foo: String)org.codeprose.test.Companion" data-cp-typeid="35" data-cp-internaltokenid="205" data-cp-ownertypeid="34" data-cp-iscallable="true" data-cp-whereusedinfile="#T205,#T250" data-cp-declaration="../content/_Example.scala.html#T205" data-cp-tooltipdisplay="true"   title="(foo: String)org.codeprose.test.Companion
+TokenType: VARID
+Offset: 883" >apply</span></a>(<a href="../content/_Example.scala.html#T207" class="in-code"><span class="ParamSymbol"  id="T207"  data-cp-fullname="java.lang.String" data-cp-typeid="33" data-cp-internaltokenid="207" data-cp-ownertypeid="35" data-cp-iscallable="false" data-cp-whereusedinfile="#T207,#T219" data-cp-declaration="../content/_Example.scala.html#T207" data-cp-tooltipdisplay="true"   title="java.lang.String
+TokenType: VARID
+Offset: 889" >foo</span></a>: <span class="ClassSymbol"  id="T210"  data-cp-fullname="java.lang.String" data-cp-typeid="13" data-cp-internaltokenid="210" data-cp-ownertypeid="14" data-cp-iscallable="false" data-cp-whereusedinfile="#T45,#T194,#T210" data-cp-tooltipdisplay="true"   title="java.lang.String
+TokenType: VARID
+Offset: 894" >String</span>) = <span class="keyword"  title="NEW" >new</span> <a href="../content/_Example.scala.html#T189" class="in-code"><span class="ClassSymbol"  id="T217"  data-cp-fullname="org.codeprose.test.Companion" data-cp-typeid="32" data-cp-internaltokenid="217" data-cp-ownertypeid="3" data-cp-iscallable="false" data-cp-whereusedinfile="#T189,#T217,#T199,#T250" data-cp-declaration="../content/_Example.scala.html#T189" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Companion
+TokenType: VARID
+Offset: 908" >Companion</span></a>(<a href="../content/_Example.scala.html#T207" class="in-code"><span class="ParamSymbol"  id="T219"  data-cp-fullname="java.lang.String" data-cp-typeid="33" data-cp-internaltokenid="219" data-cp-ownertypeid="35" data-cp-iscallable="false" data-cp-whereusedinfile="#T207,#T219" data-cp-declaration="../content/_Example.scala.html#T207" data-cp-tooltipdisplay="true"   title="java.lang.String
+TokenType: VARID
+Offset: 918" >foo</span></a>)</pre></td>
+</tr>
+
+
+<tr id="LCONT60" class="table-code-line">
+	<td id="LCOM60" class="table-code-comment"></td>
+	<td id="L60" class="table-code-linenumber" data-line-number="60">60</td>
+	<td id="LC60" class="table-code-code"><pre>}</pre></td>
+</tr>
+
+
+<tr id="LCONT61" class="table-code-line">
+	<td id="LCOM61" class="table-code-comment"></td>
+	<td id="L61" class="table-code-linenumber" data-line-number="61">61</td>
+	<td id="LC61" class="table-code-code"><pre><span class="keyword"  title="TRAIT" >trait</span> <a href="../content/_Example.scala.html#T226" class="in-code"><span  id="T226"  data-cp-fullname="org.codeprose.test.CompanionTest" data-cp-typeid="36" data-cp-internaltokenid="226" data-cp-ownertypeid="3" data-cp-iscallable="false" data-cp-whereusedinfile="#T226" data-cp-declaration="../content/_Example.scala.html#T226" data-cp-tooltipdisplay="true"   title="org.codeprose.test.CompanionTest
+TokenType: VARID
+Offset: 932" >CompanionTest</span></a> {</pre></td>
+</tr>
+
+
+<tr id="LCONT62" class="table-code-line">
+	<td id="LCOM62" class="table-code-comment"></td>
+	<td id="L62" class="table-code-linenumber" data-line-number="62">62</td>
+	<td id="LC62" class="table-code-code"><pre>	<span class="keyword"  title="DEF" >def</span> <a href="../content/_Example.scala.html#T232" class="in-code"><span  id="T232"  data-cp-fullname="()Unit" data-cp-typeid="37" data-cp-internaltokenid="232" data-cp-ownertypeid="36" data-cp-iscallable="true" data-cp-whereusedinfile="#T232" data-cp-declaration="../content/_Example.scala.html#T232" data-cp-tooltipdisplay="true"   title="()Unit
+TokenType: VARID
+Offset: 954" >bar</span></a>() : <span class="ClassSymbol"  id="T238"  data-cp-fullname="scala.Unit" data-cp-typeid="9" data-cp-internaltokenid="238" data-cp-ownertypeid="12" data-cp-iscallable="false" data-cp-whereusedinfile="#T50,#T238" data-cp-tooltipdisplay="true"   title="scala.Unit
+TokenType: VARID
+Offset: 962" >Unit</span> = {</pre></td>
+</tr>
+
+
+<tr id="LCONT63" class="table-code-line">
+	<td id="LCOM63" class="table-code-comment"></td>
+	<td id="L63" class="table-code-linenumber" data-line-number="63">63</td>
+	<td id="LC63" class="table-code-code"><pre>		<span class="keyword"  title="VAL" >val</span> <a href="../content/_Example.scala.html#T246" class="in-code"><span class="ValSymbol"  id="T246"  data-cp-fullname="org.codeprose.test.Companion" data-cp-typeid="32" data-cp-internaltokenid="246" data-cp-ownertypeid="37" data-cp-iscallable="false" data-cp-whereusedinfile="#T246" data-cp-declaration="../content/_Example.scala.html#T246" data-cp-tooltipdisplay="true"   title="org.codeprose.test.Companion
+TokenType: VARID
+Offset: 977" >a</span></a> = <a href="../content/_Example.scala.html#T205" class="in-code"><span  id="T250"  data-cp-fullname="(foo: String)org.codeprose.test.Companion" data-cp-typeid="35" data-cp-internaltokenid="250" data-cp-ownertypeid="34" data-cp-iscallable="true" data-cp-whereusedinfile="#T205,#T250" data-cp-declaration="../content/_Example.scala.html#T205" data-cp-tooltipdisplay="true"   title="(foo: String)org.codeprose.test.Companion
+TokenType: VARID
+Offset: 981" >Companion</span></a>(<span class="stringLiteral"  data-cp-fullname="STRING_LITERAL" data-cp-tooltipdisplay="true"   title="STRING_LITERAL
+Offset: 991" >&quot;a&quot;</span>);</pre></td>
+</tr>
+
+
+<tr id="LCONT64" class="table-code-line">
+	<td id="LCOM64" class="table-code-comment"></td>
+	<td id="L64" class="table-code-linenumber" data-line-number="64">64</td>
+	<td id="LC64" class="table-code-code"><pre>	}</pre></td>
+</tr>
+
+
+<tr id="LCONT65" class="table-code-line">
+	<td id="LCOM65" class="table-code-comment"></td>
+	<td id="L65" class="table-code-linenumber" data-line-number="65">65</td>
+	<td id="LC65" class="table-code-code"><pre>}</pre></td>
+</tr>
+
+</table>
+
+
+
+          
+<div class="footer">generated by codeprose. help and support on <a href="http://github.com/gushai/codeprose" target="blank">github</a>.</div>
+</div>
+</div>
+</body>
+</html>
